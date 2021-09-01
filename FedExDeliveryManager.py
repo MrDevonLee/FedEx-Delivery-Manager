@@ -5,7 +5,7 @@ Course: CS1430, Section 00,  Fall 2021
 
 Assignment: Assignment 2
 
-Purpose: Make FedEx more effient
+Purpose: Make FedEx more efficient
 
 Input:   Number of deliveries and the locations of each one for a given route
 
@@ -23,6 +23,11 @@ CONSTANTS
 Fill in a short program description here. 
 """
 def main():
+    
+    num_deliveries = 5
+    for i in range(num_deliveries):
+        
+    
     # Remove the word pass and replace it with your solution.
     pass
 
