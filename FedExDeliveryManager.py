@@ -5,7 +5,8 @@ Course: CS1430, Section 00,  Fall 2021
 
 Assignment: Assignment 2
 
-Purpose: Make FedEx more efficient
+Purpose: Provide statistics about delivery routes to make the fleet more aware
+         of how efficient each driver's choices are.
 
 Input:   Number of deliveries in a route followed by the location of each in
          Cartesian coordinates, each on a new line. This cycle repeats for each
@@ -22,7 +23,10 @@ CONSTANTS
 ROUND_HUNDREDTHS = 2
 
 """
-Fill in a short program description here. 
+Description: This program takes in location data for deliveries on a fleet of
+             FedEx trucks and calculates statistics about the delivery routes.
+             These statistics are reported so that the efficiency of each route
+             can be easily accessed.
 """
 
 
@@ -35,9 +39,6 @@ def main():
     while num_deliveries != "":
         num_deliveries = int(num_deliveries)
         print(num_deliveries)
-        
-        route_number += 1
-        total_deliveries += num_deliveries
         
         x_current = 0
         y_current = 0
@@ -58,13 +59,17 @@ def main():
             y_current += delta_y
             route_distance += trip_distance
             
-            if i == 0:
+            if i == 0:  # Sets variables with first delivery
                 shortest_trip_distance = trip_distance
                 longest_trip_distance = trip_distance
             elif trip_distance < shortest_trip_distance:
                 shortest_trip_distance = trip_distance
             elif trip_distance > longest_trip_distance:
                 longest_trip_distance = trip_distance
+
+        route_number += 1
+        total_deliveries += num_deliveries
+        total_distance += route_distance
         
         if num_deliveries == 0:
             average_trip_distance = 0
@@ -75,9 +80,7 @@ def main():
             average_trip_distance = round(average_trip_distance,
                                           ROUND_HUNDREDTHS)
         
-        total_distance += route_distance
-        
-        if route_number == 1:
+        if route_number == 1:  # Sets variables with first route
             shortest_route = route_number
             longest_route = route_number
             shortest_route_distance = route_distance
@@ -90,27 +93,27 @@ def main():
             longest_route = route_number
         
         print()
-        print("**Statistics for route #" + str(route_number) + "**")
-        print("Shortest distance between deliveries:", shortest_trip_distance)
-        print("Longest distance between deliveries:", longest_trip_distance)
-        print("Distance traveled:", route_distance)
-        print(f"Average distance between deliveries: {average_trip_distance:.2f}")
+        print(f"**Statistics for route #{route_number}**")
+        print(f"Shortest distance between deliveries: {shortest_trip_distance}")
+        print(f"Longest distance between deliveries: {longest_trip_distance}")
+        print(f"Distance traveled: {route_distance}")
+        print(f"Average distance between deliveries:"
+              f" {average_trip_distance:.2f}")
         print()
         
         # input(num_deliveries)
         num_deliveries = input()
     
-    print("Total number of delivery routes:", route_number)
-    print("Total number of deliveries:", total_deliveries)
-    print("Total distance traveled for all routes:", total_distance)
+    print(f"Total number of delivery routes: {route_number}")
+    print(f"Total number of deliveries: {total_deliveries}")
+    print(f"Total distance traveled for all routes: {total_distance}")
     
     print()
-    print(
-        "Route #" + str(shortest_route) + " has the shortest travel distance:",
-        shortest_route_distance)
-    print("Route #" + str(longest_route) + " has the longest travel distance:",
-          longest_route_distance)
-    
+    print(f"Route #{shortest_route} has the shortest travel distance:"
+          f"{shortest_trip_distance}")
+    print(f"Route #{longest_route} has the shortest travel distance:"
+          f"{longest_trip_distance}")
+
     print()
     print("Normal Termination.")
 
