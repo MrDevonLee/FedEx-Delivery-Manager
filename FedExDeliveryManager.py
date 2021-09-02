@@ -26,8 +26,6 @@ Fill in a short program description here.
 
 def main():
     
-    pass
-    
     total_deliveries = 0
     total_distance = 0
     
@@ -49,7 +47,9 @@ def main():
         num_deliveries = int(input())
        
         for i in range(num_deliveries):
-            x_next_del, y_next_del = int(input().split(" "))
+            x_next_del, y_next_del = input().split(" ")
+            x_next_del = int(x_next_del)
+            y_next_del = int(y_next_del)
             
             trip_distance = abs(x_curr - x_next_del) + abs(y_curr - y_next_del)
             route_distance += trip_distance
@@ -62,7 +62,7 @@ def main():
             x_curr += x_next_del
             y_curr += y_next_del
             
-        average_trip_distance = float(route_distance) / num_deliveries
+        average_trip_distance = round(float(route_distance) / num_deliveries, 2)
         
         total_deliveries += num_deliveries
 
@@ -73,18 +73,18 @@ def main():
             longest_route_distance = route_distance
             longest_route = route_number
         
-        print("** Statistics for route  #" + route_number + "**")
-        print("Shortest distance between deliveries: " + shortest_trip_distance)
-        print("Longest distance between deliveries: " + shortest_trip_distance)
-        print("Distance traveled: " + route_distance)
-        print("Average distance between deliveries: " + average_trip_distance)
+        print("** Statistics for route  #" + str(route_number) + " **")
+        print("Shortest distance between deliveries:", shortest_trip_distance)
+        print("Longest distance between deliveries:", shortest_trip_distance)
+        print("Distance traveled:", route_distance)
+        print("Average distance between deliveries:", average_trip_distance)
         
-    print("Total number of delivery routes: " + route_number)
-    print("Total number of deliveries: " + total_deliveries)
-    print("Total distance traveled: " + total_distance)
+    print("Total number of delivery routes:", route_number)
+    print("Total number of deliveries:", total_deliveries)
+    print("Total distance traveled:", total_distance)
     
-    print("Route # 1 has the shortest travel distance: " + shortest_route_distance)
-    print("Route # 1 has the longest travel distance: " + longest_route_distance)
+    print("Route # 1 has the shortest travel distance:", shortest_route_distance)
+    print("Route # 1 has the longest travel distance:", longest_route_distance)
     
     print("Normal Termination.")
 
